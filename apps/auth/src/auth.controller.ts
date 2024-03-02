@@ -9,8 +9,8 @@ import { Response } from 'express';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
+  @UseGuards(LocalAuthGuard)
   async login(
     @CurrentUser() user: UserDocument,
     @Res({ passthrough: true }) response: Response,
