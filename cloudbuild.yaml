@@ -1,0 +1,58 @@
+steps:
+  # Reservations
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'me-west1-docker.pkg.dev/microbookingsuite/reservations/production',
+        '-f',
+        'apps/reservations/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'me-west1-docker.pkg.dev/microbookingsuite/reservations/production']
+
+  # Auth
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'me-west1-docker.pkg.dev/microbookingsuite/auth/production',
+        '-f',
+        'apps/auth/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'me-west1-docker.pkg.dev/microbookingsuite/auth/production']
+
+  # Notifications
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'me-west1-docker.pkg.dev/microbookingsuite/notifications/production',
+        '-f',
+        'apps/notifications/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      ['push', 'me-west1-docker.pkg.dev/microbookingsuite/notifications/production']
+
+  # Payments
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        'me-west1-docker.pkg.dev/microbookingsuite/payments/production',
+        '-f',
+        'apps/payments/Dockerfile',
+        '.',
+      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'me-west1-docker.pkg.dev/microbookingsuite/payments/production']
