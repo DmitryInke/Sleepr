@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payments
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: payments
+    spec:
+      containers:
+      - image: me-west1-docker.pkg.dev/microbookingsuite/payments/production
+        name: payments
