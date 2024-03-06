@@ -17,3 +17,22 @@ spec:
       containers:
       - image: me-west1-docker.pkg.dev/microbookingsuite/notifications/production
         name: notifications
+        env:
+          - name: PORT
+            value: '3000'
+          - name: GOOGLE_OAUTH_CLIENT_ID
+            value: 449139926902-e6ou2l3jna453auha0n769d0v4ildt0e.apps.googleusercontent.com
+          - name: GOOGLE_OAUTH_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: google
+                key: clientSecret
+          - name: GOOGLE_OAUTH_REFRESH_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: google
+                key: refreshToken
+          - name: SMTP_USER
+            value: dmitrypicrypto@gmail.com
+        ports:
+          - containerPort: 3000
