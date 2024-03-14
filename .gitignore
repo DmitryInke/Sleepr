@@ -59,3 +59,5 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 copy_script.sh
 
 microbookingsuite-8e594c62706a.json
+
+copy_ts_files.sh
