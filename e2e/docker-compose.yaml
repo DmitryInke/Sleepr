@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   e2e:
     build:
@@ -10,29 +12,58 @@ services:
       - payments
       - notifications
       - mongo
+
   reservations:
-    image: microbookingsuite-reservations:latest
+    build:
+      context: ../
+      dockerfile: ./apps/reservations/Dockerfile
+      target: development
+    command: pnpm run start:dev reservations
     env_file:
       - ../apps/reservations/.env
     ports:
       - '3000:3000'
+    volumes:
+      - ../:/usr/src/app
+
   auth:
-    image: microbookingsuite-auth:latest
+    build:
+      context: ../
+      dockerfile: ./apps/auth/Dockerfile
+      target: development
+    command: pnpm run start:dev auth
     env_file:
       - ../apps/auth/.env
     ports:
       - '3001:3001'
+    volumes:
+      - ../:/usr/src/app
+
   payments:
-    image: microbookingsuite-payments:latest
-    ports:
-      - '3003:3003'
+    build:
+      context: ../
+      dockerfile: ./apps/payments/Dockerfile
+      target: development
+    command: pnpm run start:dev payments
     env_file:
       - ../apps/payments/.env
-  notifications:
-    image: microbookingsuite-notifications:latest
     ports:
-      - '3004:3004'
+      - '3003:3003'
+    volumes:
+      - ../:/usr/src/app
+
+  notifications:
+    build:
+      context: ../
+      dockerfile: ./apps/notifications/Dockerfile
+      target: development
+    command: pnpm run start:dev notifications
     env_file:
       - ../apps/notifications/.env
+    ports:
+      - '3004:3004'
+    volumes:
+      - ../:/usr/src/app
+
   mongo:
     image: mongo
