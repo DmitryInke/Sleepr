@@ -7,11 +7,12 @@ services:
     volumes:
       - ./specs:/usr/src/app/specs
     depends_on:
+      - mongo
+      - rabbitmq
       - reservations
       - auth
       - payments
       - notifications
-      - mongo
 
   reservations:
     build:
@@ -67,3 +68,8 @@ services:
 
   mongo:
     image: mongo
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - 5672:5672

@@ -9,10 +9,10 @@ import { Transport } from '@nestjs/microservices';
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
   const configService = app.get(ConfigService);
-  app.connectMicroservice({ transport: Transport.TCP ,
+  app.connectMicroservice({ transport: Transport.RMQ ,
   options: {
-    host: '0.0.0.0',
-    port: configService.get('TCP_PORT')
+    urls: [configService.get('RABBITMQ_URI')],
+    queue: 'auth'
   }});
   app.use(coockieParser());
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
