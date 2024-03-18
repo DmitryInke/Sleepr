@@ -19,11 +19,15 @@ export class NotificationsService {
   });
 
   async notifyEmail({ email, text }: NotifyEmailDto) {
-    await this.transporter.sendMail({
-      from: this.configService.get('SMTP_USER'),
-      to: email,
-      subject: 'MicroBookingSuite Notification',
-      text,
-    });
+    try {
+      await this.transporter.sendMail({
+        from: this.configService.get('SMTP_USER'),
+        to: email,
+        subject: 'MicroBookingSuite Notification',
+        text,
+      });
+    } catch (error) {
+      console.error('Failed to send email: ', error);
+    }
   }
 }

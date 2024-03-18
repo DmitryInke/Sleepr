@@ -11,7 +11,7 @@ import * as Joi from 'joi';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: Joi.object({
-        RABBITMQ_URI: Joi.string().required(),
+        NOTIFICATIONS_GRPC_URL: Joi.string().required(),
         SMTP_USER: Joi.string().required(),
         GOOGLE_OAUTH_REFRESH_TOKEN: Joi.string().required(),
         GOOGLE_OAUTH_CLIENT_SECRET: Joi.string().required(),
