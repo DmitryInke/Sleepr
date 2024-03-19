@@ -11,6 +11,11 @@ describe('Health', () => {
     expect(response.ok).toBeTruthy();
   });
 
+  test('Gateway', async () => {
+    const response = await fetch('http://gateway:3004');
+    expect(response.ok).toBeTruthy();
+  });
+
   test('Payments', (done) => {
     ping({ address: 'payments', port: 3003 }, (error) => {
       if (error) {
@@ -21,7 +26,7 @@ describe('Health', () => {
   });
 
   test('Notifications', (done) => {
-    ping({ address: 'notifications', port: 3004 }, (error) => {
+    ping({ address: 'notifications', port: 3005 }, (error) => {
       if (error) {
         fail();
       }
