@@ -14,14 +14,6 @@ Communication across these microservices is facilitated through RabbitMQ, ensuri
 
 ## Installation
 
-To set up the project environment, follow these steps:
-
-### Install Dependencies
-
-Use the following command to install the project dependencies:
-
-## Installation
-
 ```bash
 $ pnpm install -r
 ```
