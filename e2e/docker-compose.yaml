@@ -12,6 +12,7 @@ services:
       - auth
       - payments
       - notifications
+      - gateway
 
   reservations:
     build:
@@ -61,9 +62,20 @@ services:
     env_file:
       - ../apps/notifications/.env
     ports:
-      - '3004:3004'
+      - '3005:3005'
     volumes:
       - ../:/usr/src/app
-
+  gateway:
+    build:
+      context: ../
+      dockerfile: ./apps/gateway/Dockerfile
+      target: development
+    command: pnpm run start:dev gateway
+    env_file:
+      - ../apps/gateway/.env
+    volumes:
+      - ..:/usr/src/app
+    ports:
+      - '3004:3004'
   mongo:
     image: mongo

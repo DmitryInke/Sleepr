@@ -14,9 +14,11 @@ export class CreateChargeDto implements Omit<CreateChargeMessage, 'email'> {
   @IsNotEmptyObject()
   @ValidateNested()
   @Type(() => CardDto)
+  @Field(() => CardDto)
   card: CardDto;
 
   @IsNumber()
   @IsPositive()
+  @Field()
   amount: number;
 }

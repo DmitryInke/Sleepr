@@ -1,3 +1,4 @@
+import { Field, InputType } from '@nestjs/graphql';
 import {
   IsCreditCard,
   IsNotEmpty,
@@ -11,6 +12,7 @@ import { CardMessage } from '../types';
 export class CardDto implements CardMessage {
   @IsString()
   @IsNotEmpty()
+  @Field()
   cvc: string;
 
   @IsNumber()
@@ -26,7 +28,7 @@ export class CardDto implements CardMessage {
     message: 'Expiration year is too far in the future',
   })
   expYear: number;
-
   @IsCreditCard()
+  @Field()
   number: string;
 }

@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   stripe:
-    specifier: ^14.19.0
-    version: 14.19.0
+    specifier: ^14.21.0
+    version: 14.21.0
 
 packages:
 
@@ -126,8 +126,8 @@ packages:
       object-inspect: 1.13.1
     dev: false
 
-  /stripe@14.19.0:
-    resolution: {integrity: sha512-Je2USTpUib3hApIgoHXViLoYkDLp+AXdUJvJ6aMQ/AcvZK1PcC7N8nTceh+0gpdotX8izlWN4QyVdMcptubHBQ==}
+  /stripe@14.21.0:
+    resolution: {integrity: sha512-PFmpl35Myn6UDdVLTHcuppdbkPVvlQfkMHOmgGZh5QOdSUxVmvz090Z4obLg8ta1MNs1PNpzr9i7E39iAIv07A==}
     engines: {node: '>=12.*'}
     dependencies:
       '@types/node': 20.11.24

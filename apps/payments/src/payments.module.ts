@@ -12,6 +12,7 @@ import * as Joi from 'joi';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 
+
 @Module({
   imports: [
     LoggerModule,
@@ -22,6 +23,12 @@ import { join } from 'path';
         NOTIFICATIONS_GRPC_URL: Joi.string().required(),
         STRIPE_SECRET_KEY: Joi.string().required(),
       }),
+    }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloFederationDriver,
+      autoSchemaFile: {
+        federation: 2,
+      },
     }),
     ClientsModule.registerAsync([
       {
@@ -39,6 +46,6 @@ import { join } from 'path';
     ]),
   ],
   controllers: [PaymentsController],
-  providers: [PaymentsService],
+  providers: [PaymentsService, PaymentsResolver],
 })
 export class PaymentsModule {}
